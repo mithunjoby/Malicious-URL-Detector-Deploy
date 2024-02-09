@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malicious URL Detector</title>
+    <style>
+        body {
+            background: url('/static/bg1.jpg') center/cover fixed no-repeat;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .danger {
+            color: #f00;
+            font-size: 24px;
+        }
+
+        .success {
+            color: #4caf50;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: #fcecec;margin-bottom: 20px">Malicious URL Detector</h1>
+    <form method="post" action="/">
+        <label for="url">Enter a URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Test</button>
+    </form>
+
+    {% if result %}
+        <p class="{{ 'danger' if result == 'Malicious' else 'success' }}">
+            {% if result == 'Malicious' %}
+                &#9888; <!-- Danger symbol -->
+            {% else %}
+                &#10004; <!-- Check mark -->
+            {% endif %}
+            The URL is {{ result }}
+        </p>
+    {% endif %}
+</body>
+</html>
